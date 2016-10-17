@@ -1,5 +1,3 @@
-// Ionic Starter App
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -25,21 +23,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-
+      //Home state (open shuttler manually)
       .state('app.home', {
         url: '/home',
-
         views: {
           'tab-home': {
             templateUrl: 'templates/home.html',
             controller: 'VoletCtrl'
           }
         }
-
-        // }
-
       })
-
+      //menu + login state
       .state('app', {
         url: '/app',
         abstract: true,
@@ -47,6 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'AppCtrl'
       })
 
+      //scroll state to set the position of the shuttler 
       .state('app.scroll', {
         url: '/scroll',
         views: {
@@ -57,7 +52,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       })
       ;
-
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/home');

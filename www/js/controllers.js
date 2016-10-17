@@ -52,19 +52,27 @@ angular.module('starter.controllers', [])
       }, 1000);
     };
   })
-  .controller('AutoCtrl', function ($scope, $ionicScrollDelegate) {
-    $scope.scrollvalue = 0;
-    $scope.onDragDown = function () {
-      $scope.scrollvalue+=0.2;
+  .controller('AutoCtrl', function ($scope, $ionicScrollDelegate, $window) {
+    $scope.scrollvalue = 0.01;
+    var width = $window.innerWidth;
+    var height = $window.innerHeight;
+    //console.log(100/(height*0.9-20));
+    $scope.ondrag = function(event){
+      $scope.scrollvalue = (event.gesture.center.pageY-60)*(120/(height*0.9-20));
+      //console.log($scope.scrollvalue);
+    }
+    $scope.onDragDown = function (event) {
+      $scope.scrollvalue+=0.3;
+      //console.log("scrolldown");
       if($scope.scrollvalue > 100){
         $scope.scrollvalue = 100;
       }
     }
 
     $scope.onDragUp = function () {
-      $scope.scrollvalue-=0.2;
-      if($scope.scrollvalue < 0){
-        $scope.scrollvalue = 0;
+      $scope.scrollvalue-=0.3;
+      if($scope.scrollvalue < 0.02){
+        $scope.scrollvalue = 0.01;
       }
     }
   })
